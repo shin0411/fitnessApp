@@ -1,0 +1,58 @@
+import { QuizQuestion } from '../../../types';
+
+export const mathQuestions: Omit<QuizQuestion, 'id'>[] = [
+  {
+    subject: 'math',
+    difficulty: 3,
+    question_text: '3 + 7 = ?',
+    choices: ['8', '9', '10', '11'],
+    correct_index: 2,
+    explanation: '3 + 7 = 10 です。',
+    time_limit_seconds: 25,
+  },
+  {
+    subject: 'math',
+    difficulty: 5,
+    question_text: '24 ÷ 6 = ?',
+    choices: ['3', '4', '5', '6'],
+    correct_index: 1,
+    explanation: '24 ÷ 6 = 4 です。',
+    time_limit_seconds: 25,
+  },
+  {
+    subject: 'math',
+    difficulty: 8,
+    question_text: '2² + 3² = ?',
+    choices: ['10', '12', '13', '25'],
+    correct_index: 2,
+    explanation: '2² = 4、3² = 9 なので、4 + 9 = 13 です。',
+    time_limit_seconds: 20,
+  },
+  {
+    subject: 'math',
+    difficulty: 11,
+    question_text: 'x² - 5x + 6 = 0 の解は？',
+    choices: ['x = 1, 6', 'x = 2, 3', 'x = -2, -3', 'x = -1, -6'],
+    correct_index: 1,
+    explanation: '因数分解すると (x-2)(x-3) = 0 なので、x = 2 または x = 3 です。',
+    time_limit_seconds: 15,
+  },
+  {
+    subject: 'math',
+    difficulty: 14,
+    question_text: 'sin²θ + cos²θ = ?',
+    choices: ['0', '1', '2', 'tanθ'],
+    correct_index: 1,
+    explanation: '三角関数の基本的な恒等式：sin²θ + cos²θ = 1 は常に成立します。',
+    time_limit_seconds: 12,
+  },
+  {
+    subject: 'math',
+    difficulty: 17,
+    question_text: '∫(0→1) x² dx の値は？',
+    choices: ['1/2', '1/3', '1/4', '1'],
+    correct_index: 1,
+    explanation: '∫x² dx = x³/3 + C なので、[x³/3]₀¹ = 1/3 - 0 = 1/3 です。',
+    time_limit_seconds: 10,
+  },
+];
