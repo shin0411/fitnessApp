@@ -1,0 +1,77 @@
+import { Quest } from '../../types';
+
+export const DAILY_QUESTS: Omit<Quest, 'expires_at'>[] = [
+  {
+    id: 'daily_workout',
+    quest_type: 'daily',
+    title: 'ワークアウト1セッション',
+    description: '今日1回ワークアウトを記録する',
+    condition_type: 'workout_session_count',
+    condition_value: { count: 1 },
+    xp_reward: 100,
+    level_type: 'physical',
+  },
+  {
+    id: 'daily_quiz_5',
+    quest_type: 'daily',
+    title: 'クイズ5問チャレンジ',
+    description: 'クイズを5問解く',
+    condition_type: 'quiz_question_count',
+    condition_value: { count: 5 },
+    xp_reward: 80,
+    level_type: 'knowledge',
+  },
+  {
+    id: 'daily_meal_log',
+    quest_type: 'daily',
+    title: '食事を記録する',
+    description: '1食分の食事を記録する',
+    condition_type: 'meal_log_count',
+    condition_value: { count: 1 },
+    xp_reward: 50,
+    level_type: 'physical',
+  },
+  {
+    id: 'daily_beauty_care',
+    quest_type: 'daily',
+    title: 'スキンケア記録',
+    description: 'スキンケアを記録する',
+    condition_type: 'beauty_care_count',
+    condition_value: { count: 1 },
+    xp_reward: 60,
+    level_type: 'beauty',
+  },
+];
+
+export const WEEKLY_QUESTS: Omit<Quest, 'expires_at'>[] = [
+  {
+    id: 'weekly_workout_5',
+    quest_type: 'weekly',
+    title: '今週 5日ワークアウト',
+    description: '今週 5回以上ワークアウトセッションを完了する',
+    condition_type: 'workout_session_count_week',
+    condition_value: { count: 5 },
+    xp_reward: 500,
+    level_type: 'physical',
+  },
+  {
+    id: 'weekly_quiz_30',
+    quest_type: 'weekly',
+    title: '週 30問クイズ完走',
+    description: '今週 30問以上クイズに答える',
+    condition_type: 'quiz_question_count_week',
+    condition_value: { count: 30 },
+    xp_reward: 400,
+    level_type: 'knowledge',
+  },
+  {
+    id: 'weekly_meal_all',
+    quest_type: 'weekly',
+    title: '7日間食事記録',
+    description: '今週 7日間食事を記録する',
+    condition_type: 'meal_streak_days',
+    condition_value: { days: 7 },
+    xp_reward: 600,
+    level_type: 'physical',
+  },
+];
