@@ -31,6 +31,9 @@ yarn-error.*
 # local env files
 .env*.local
 
+# lock files (managed by local npm install)
+package-lock.json
+
 # typescript
 *.tsbuildinfo
 
