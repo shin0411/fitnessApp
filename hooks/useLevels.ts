@@ -1,7 +1,7 @@
 import { useUserStore } from '../store/userStore';
 import { supabase } from '../lib/supabase';
 import { levelFromXp, xpToNextLevel, getTitleForLevel, calcComprehensiveXp } from '../modules/levels/xp';
-import { LevelType } from '../types';
+import { LevelType, UserLevel } from '../types';
 
 export function useLevels() {
   const { levels, profile, setLevels } = useUserStore();
@@ -55,7 +55,7 @@ export function useLevels() {
     }
 
     const { data } = await supabase.from('user_levels').select('*').eq('user_id', profile.id);
-    if (data) setLevels(data as never);
+    if (data) setLevels(data as UserLevel[]);
 
     return { leveledUp, newLevel };
   }

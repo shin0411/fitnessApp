@@ -100,7 +100,7 @@ export function LevelUpModal({ visible, levelType, newLevel, newTitle, xpGained,
 
 const styles = StyleSheet.create({
   root: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.72)' },
+  backdrop: { ...StyleSheet.absoluteFill, backgroundColor: 'rgba(0,0,0,0.72)' },
   card: {
     width: 280,
     borderRadius: 28,

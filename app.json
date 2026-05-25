@@ -7,6 +7,11 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "scheme": "fitnessrpg",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0A1A"
+    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.shin0411.fitnessrpg"

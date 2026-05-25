@@ -35,6 +35,10 @@ export default function RootLayout() {
         <Stack.Screen name="goal-setup" />
         <Stack.Screen name="theme-settings" />
         <Stack.Screen name="achievements" />
+        <Stack.Screen name="progress" />
+        <Stack.Screen name="ranking" />
+        <Stack.Screen name="guild" />
+        <Stack.Screen name="share-card" />
       </Stack>
     </ThemeProvider>
   );

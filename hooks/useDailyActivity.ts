@@ -18,13 +18,14 @@ export function useDailyActivity() {
   const loadTodayActivity = useCallback(async () => {
     if (!profile?.id) return;
     const today = new Date().toISOString().split('T')[0];
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('daily_activity')
       .select('*')
       .eq('user_id', profile.id)
       .eq('date', today)
       .single();
 
+    if (error && error.code !== 'PGRST116') return;
     if (data) {
       setTodayActivity(data as DailyActivity);
       setCheckinDone(true);
@@ -71,7 +72,7 @@ export function useDailyActivity() {
         .select('consecutive_ignores')
         .eq('user_id', profile.id)
         .eq('date', today)
-        .single();
+        .maybeSingle();
 
       const consecutiveIgnores = (existingLog?.consecutive_ignores ?? 0) + 1;
       const saiyanTriggered = consecutiveIgnores >= 7;

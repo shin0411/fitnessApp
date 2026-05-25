@@ -38,7 +38,7 @@ export default function SignupScreen() {
     const generatedCode = `${username.toUpperCase().slice(0, 4)}${Math.floor(Math.random() * 9000 + 1000)}`;
     let invitedBy: string | null = null;
     if (inviteCode) {
-      const { data: inviter } = await supabase.from('profiles').select('id').eq('invite_code', inviteCode.toUpperCase()).single();
+      const { data: inviter } = await supabase.from('profiles').select('id').eq('invite_code', inviteCode.toUpperCase()).maybeSingle();
       invitedBy = inviter?.id ?? null;
     }
     await supabase.from('profiles').insert({ id: userId, username, invite_code: generatedCode, invited_by: invitedBy, theme: 'simple', onboarding_completed: false });

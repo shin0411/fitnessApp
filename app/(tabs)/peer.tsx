@@ -88,7 +88,7 @@ export default function PeerScreen() {
       )
       .subscribe();
 
-    return () => { supabase.removeChannel(channel); };
+    return () => { channel.unsubscribe(); supabase.removeChannel(channel); };
   }, [profile?.id]);
 
   async function loadChallenges() {
