@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -19,10 +19,12 @@ import { ModeBanner } from '../../components/Modebanner';
 import { QuestList } from '../../components/QuestList';
 import { DailyCheckin } from '../../components/DailyCheckin';
 import { AchievementToast } from '../../components/AchievementToast';
-import { xpToNextLevel } from '../../modules/levels/xp';
+import { LevelUpModal } from '../../components/LevelUpModal';
+import { SaiyanBurst } from '../../components/SaiyanBurst';
+import { xpToNextLevel, getTitleForLevel } from '../../modules/levels/xp';
 import { DAILY_QUESTS } from '../../modules/quests/definitions';
 import { supabase } from '../../lib/supabase';
-import { Quest } from '../../types';
+import { Quest, LevelType, Mode } from '../../types';
 
 const DAILY_QUESTS_WITH_EXPIRES: Quest[] = DAILY_QUESTS.map((q) => ({
   ...q,
@@ -38,11 +40,23 @@ export default function DashboardScreen() {
   const { checkinDone, loadTodayActivity, submitCheckin } = useDailyActivity();
   const [refreshing, setRefreshing] = useState(false);
   const [toast, setToast] = useState({ visible: false, message: '', xp: 0 });
+  const [levelUp, setLevelUp] = useState<{ visible: boolean; levelType: LevelType; level: number; title: string; xp: number }>({
+    visible: false, levelType: 'beauty', level: 1, title: '', xp: 0,
+  });
+  const [saiyanVisible, setSaiyanVisible] = useState(false);
+  const prevMode = useRef<Mode>('normal');
 
   useEffect(() => {
     loadProgress();
     loadTodayActivity();
   }, [loadProgress, loadTodayActivity]);
+
+  useEffect(() => {
+    if (currentMode === 'saiyan' && prevMode.current !== 'saiyan') {
+      setSaiyanVisible(true);
+    }
+    prevMode.current = currentMode;
+  }, [currentMode]);
 
   const comprehensive = levels['comprehensive'];
   const compProgress = comprehensive ? xpToNextLevel(comprehensive.total_xp) : null;
@@ -68,11 +82,17 @@ export default function DashboardScreen() {
     if (error) { Alert.alert('エラー', '記録に失敗しました'); return; }
     const { leveledUp, newLevel } = await addXp('beauty', 30);
     await incrementQuest('daily_beauty_care');
-    setToast({
-      visible: true,
-      message: leveledUp ? `ビューティー Lv.${newLevel}！` : 'スキンケア記録！',
-      xp: 30,
-    });
+    if (leveledUp) {
+      setLevelUp({
+        visible: true,
+        levelType: 'beauty',
+        level: newLevel,
+        title: getTitleForLevel(newLevel, 'beauty'),
+        xp: 30,
+      });
+    } else {
+      setToast({ visible: true, message: 'スキンケア記録！', xp: 30 });
+    }
   }
 
   return (
@@ -169,6 +189,12 @@ export default function DashboardScreen() {
         >
           <Text style={[styles.quickBtnText, { color: theme.text }]}>⚔️ ギルド</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.quickBtn, { backgroundColor: theme.surface, borderColor: theme.border }]}
+          onPress={() => router.push('/share-card')}
+        >
+          <Text style={[styles.quickBtnText, { color: theme.text }]}>📲 シェア</Text>
+        </TouchableOpacity>
       </View>
 
       <QuestList
@@ -182,6 +208,17 @@ export default function DashboardScreen() {
         xpGained={toast.xp}
         onHide={() => setToast((t) => ({ ...t, visible: false }))}
       />
+
+      <LevelUpModal
+        visible={levelUp.visible}
+        levelType={levelUp.levelType}
+        newLevel={levelUp.level}
+        newTitle={levelUp.title}
+        xpGained={levelUp.xp}
+        onHide={() => setLevelUp((l) => ({ ...l, visible: false }))}
+      />
+
+      <SaiyanBurst visible={saiyanVisible} onHide={() => setSaiyanVisible(false)} />
     </ScrollView>
   );
 }

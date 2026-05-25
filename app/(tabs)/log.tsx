@@ -15,8 +15,10 @@ import { useLevels } from '../../hooks/useLevels';
 import { useGpsSession } from '../../hooks/useGpsSession';
 import { useQuests } from '../../hooks/useQuests';
 import { supabase } from '../../lib/supabase';
-import { Exercise, WorkoutSession } from '../../types';
+import { Exercise, WorkoutSession, LevelType } from '../../types';
 import { AchievementToast } from '../../components/AchievementToast';
+import { LevelUpModal } from '../../components/LevelUpModal';
+import { getTitleForLevel } from '../../modules/levels/xp';
 
 function calcPhysicalXp(totalSets: number, totalVolume: number, durationMinutes: number): number {
   return Math.min(Math.floor(totalSets * 15 + totalVolume * 0.01 + durationMinutes * 2), 500);
@@ -40,6 +42,9 @@ export default function WorkoutLogScreen() {
   const [reps, setReps] = useState('');
   const [gpsType, setGpsType] = useState<'run' | 'walk'>('walk');
   const [toast, setToast] = useState({ visible: false, message: '', xp: 0 });
+  const [levelUp, setLevelUp] = useState<{ visible: boolean; levelType: LevelType; level: number; title: string; xp: number }>({
+    visible: false, levelType: 'physical', level: 1, title: '', xp: 0,
+  });
 
   useEffect(() => {
     if (profile?.id) {
@@ -123,11 +128,17 @@ export default function WorkoutLogScreen() {
     await incrementQuest('daily_workout');
     endSession();
 
-    setToast({
-      visible: true,
-      message: leveledUp ? `フィジカル Lv.${newLevel} にレベルアップ！` : 'ワークアウト完了！',
-      xp: xpEarned,
-    });
+    if (leveledUp) {
+      setLevelUp({
+        visible: true,
+        levelType: 'physical',
+        level: newLevel,
+        title: getTitleForLevel(newLevel, 'physical'),
+        xp: xpEarned,
+      });
+    } else {
+      setToast({ visible: true, message: 'ワークアウト完了！', xp: xpEarned });
+    }
   }
 
   async function handleGpsStart() {
@@ -335,6 +346,14 @@ export default function WorkoutLogScreen() {
         message={toast.message}
         xpGained={toast.xp}
         onHide={() => setToast((t) => ({ ...t, visible: false }))}
+      />
+      <LevelUpModal
+        visible={levelUp.visible}
+        levelType={levelUp.levelType}
+        newLevel={levelUp.level}
+        newTitle={levelUp.title}
+        xpGained={levelUp.xp}
+        onHide={() => setLevelUp((l) => ({ ...l, visible: false }))}
       />
     </ScrollView>
   );

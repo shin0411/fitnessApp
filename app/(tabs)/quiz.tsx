@@ -12,7 +12,9 @@ import { useUserStore } from '../../store/userStore';
 import { useLevels } from '../../hooks/useLevels';
 import { supabase } from '../../lib/supabase';
 import { AchievementToast } from '../../components/AchievementToast';
-import { QuizQuestion } from '../../types';
+import { LevelUpModal } from '../../components/LevelUpModal';
+import { QuizQuestion, LevelType } from '../../types';
+import { getTitleForLevel } from '../../modules/levels/xp';
 import { calcQuizXp, calcSessionBonus, difficultyFromKnowledgeLevel, QUIZ_DIFFICULTY_CONFIG } from '../../modules/knowledge/xp';
 import { japaneseQuestions } from '../../modules/knowledge/questions/japanese';
 import { mathQuestions } from '../../modules/knowledge/questions/math';
@@ -52,6 +54,9 @@ export default function QuizScreen() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [sessionDone, setSessionDone] = useState(false);
   const [toast, setToast] = useState({ visible: false, message: '', xp: 0 });
+  const [levelUp, setLevelUp] = useState<{ visible: boolean; levelType: LevelType; level: number; title: string; xp: number }>({
+    visible: false, levelType: 'knowledge', level: 1, title: '', xp: 0,
+  });
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const progressAnim = useRef(new Animated.Value(1)).current;
 
@@ -133,11 +138,17 @@ export default function QuizScreen() {
           avg_response_seconds: timeLimitSeconds / 2,
           xp_earned: total,
         });
-        setToast({
-          visible: true,
-          message: leveledUp ? `ナレッジ Lv.${newLevel} にレベルアップ！` : 'クイズ完了！',
-          xp: total,
-        });
+        if (leveledUp) {
+          setLevelUp({
+            visible: true,
+            levelType: 'knowledge',
+            level: newLevel,
+            title: getTitleForLevel(newLevel, 'knowledge'),
+            xp: total,
+          });
+        } else {
+          setToast({ visible: true, message: 'クイズ完了！', xp: total });
+        }
       }
       setSessionDone(true);
       return;
@@ -242,6 +253,14 @@ export default function QuizScreen() {
         message={toast.message}
         xpGained={toast.xp}
         onHide={() => setToast((t) => ({ ...t, visible: false }))}
+      />
+      <LevelUpModal
+        visible={levelUp.visible}
+        levelType={levelUp.levelType}
+        newLevel={levelUp.level}
+        newTitle={levelUp.title}
+        xpGained={levelUp.xp}
+        onHide={() => setLevelUp((l) => ({ ...l, visible: false }))}
       />
     </ScrollView>
   );
