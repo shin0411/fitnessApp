@@ -13,9 +13,11 @@ import { useTheme } from '../../hooks/useTheme';
 import { useUserStore } from '../../store/userStore';
 import { useLevels } from '../../hooks/useLevels';
 import { useQuests } from '../../hooks/useQuests';
+import { useDailyActivity } from '../../hooks/useDailyActivity';
 import { LevelCard } from '../../components/LevelCard';
 import { ModeBanner } from '../../components/Modebanner';
 import { QuestList } from '../../components/QuestList';
+import { DailyCheckin } from '../../components/DailyCheckin';
 import { AchievementToast } from '../../components/AchievementToast';
 import { xpToNextLevel } from '../../modules/levels/xp';
 import { DAILY_QUESTS } from '../../modules/quests/definitions';
@@ -33,21 +35,27 @@ export default function DashboardScreen() {
   const currentMode = useUserStore((s) => s.currentMode);
   const { levels, addXp } = useLevels();
   const { progressMap, loadProgress, incrementQuest } = useQuests();
+  const { checkinDone, loadTodayActivity, submitCheckin } = useDailyActivity();
   const [refreshing, setRefreshing] = useState(false);
   const [toast, setToast] = useState({ visible: false, message: '', xp: 0 });
 
   useEffect(() => {
     loadProgress();
-  }, [loadProgress]);
+    loadTodayActivity();
+  }, [loadProgress, loadTodayActivity]);
 
   const comprehensive = levels['comprehensive'];
   const compProgress = comprehensive ? xpToNextLevel(comprehensive.total_xp) : null;
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    await loadProgress();
+    await Promise.all([loadProgress(), loadTodayActivity()]);
     setRefreshing(false);
-  }, [loadProgress]);
+  }, [loadProgress, loadTodayActivity]);
+
+  async function handleCheckin(sleepHours: number, screenTimeHours: number, activeMinutes: number) {
+    await submitCheckin(sleepHours, screenTimeHours, activeMinutes);
+  }
 
   async function logBeautyCare() {
     if (!profile?.id) return;
@@ -83,6 +91,8 @@ export default function DashboardScreen() {
       </View>
 
       <ModeBanner mode={currentMode} />
+
+      {!checkinDone && <DailyCheckin onSubmit={handleCheckin} />}
 
       {comprehensive && compProgress && (
         <View
@@ -128,12 +138,12 @@ export default function DashboardScreen() {
         })}
       </View>
 
-      <View style={styles.quickRow}>
+      <View style={styles.quickGrid}>
         <TouchableOpacity
-          style={[styles.quickBtn, { backgroundColor: '#FF8FAB' + '20', borderColor: '#FF8FAB' }]}
+          style={[styles.quickBtn, { backgroundColor: '#FF8FAB20', borderColor: '#FF8FAB' }]}
           onPress={logBeautyCare}
         >
-          <Text style={[styles.quickBtnText, { color: '#FF8FAB' }]}>💄 スキンケア記録</Text>
+          <Text style={[styles.quickBtnText, { color: '#FF8FAB' }]}>💄 スキンケア</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.quickBtn, { backgroundColor: theme.surface, borderColor: theme.border }]}
@@ -146,6 +156,18 @@ export default function DashboardScreen() {
           onPress={() => router.push('/achievements')}
         >
           <Text style={[styles.quickBtnText, { color: theme.text }]}>🏆 実績</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.quickBtn, { backgroundColor: theme.surface, borderColor: theme.border }]}
+          onPress={() => router.push('/ranking')}
+        >
+          <Text style={[styles.quickBtnText, { color: theme.text }]}>🌍 ランキング</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.quickBtn, { backgroundColor: theme.surface, borderColor: theme.border }]}
+          onPress={() => router.push('/guild')}
+        >
+          <Text style={[styles.quickBtnText, { color: theme.text }]}>⚔️ ギルド</Text>
         </TouchableOpacity>
       </View>
 
@@ -184,9 +206,10 @@ const styles = StyleSheet.create({
   compBarFill: { height: '100%', borderRadius: 5 },
   sectionTitle: { fontSize: 16, fontWeight: '700', marginBottom: 10, marginTop: 4 },
   compactRow: { flexDirection: 'row', marginHorizontal: -4, marginBottom: 16 },
-  quickRow: { flexDirection: 'row', gap: 8, marginBottom: 20 },
+  quickGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 20 },
   quickBtn: {
-    flex: 1,
+    width: '30%',
+    flexGrow: 1,
     height: 44,
     borderRadius: 12,
     borderWidth: 1.5,
