@@ -7,39 +7,46 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
-  Alert,
+  ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import { router } from 'expo-router';
-import { supabase } from '../../lib/supabase';
+import { useAuth } from '../../hooks/useAuth';
 import { useTheme } from '../../hooks/useTheme';
 
 export default function LoginScreen() {
   const theme = useTheme();
+  const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  async function handleLogin() {
-    if (!email || !password) return;
+  const handleLogin = async () => {
+    if (!email || !password) {
+      setError('メールとパスワードを入力してください');
+      return;
+    }
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    setError('');
+    const { error: authError } = await signIn(email, password);
     setLoading(false);
-    if (error) Alert.alert('ログインエラー', error.message);
-  }
+    if (authError) {
+      setError('メールまたはパスワードが正しくありません');
+    }
+  };
 
   return (
-    <KeyboardAvoidingView
-      style={[styles.container, { backgroundColor: theme.background }]}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    >
+    <KeyboardAvoidingView style={[styles.container, { backgroundColor: theme.background }]} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
       <View style={styles.inner}>
         <Text style={[styles.logo, { color: theme.primary }]}>FitnessRPG</Text>
         <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
-          身体・美容・知性をRPGで鵄えよう
+          身体・美容・知性をRPGで鍛えよう
         </Text>
-
+        {error ? <Text style={[styles.error, { color: theme.error }]}>{error}</Text> : null}
         <TextInput
-          style={[styles.input, { backgroundColor: theme.surface, color: theme.text, borderColor: theme.border }]}
+          style={[styles.input, { borderColor: theme.border, color: theme.text, backgroundColor: theme.surface }]}
           placeholder="メールアドレス"
           placeholderTextColor={theme.textSecondary}
           value={email}
@@ -48,52 +55,38 @@ export default function LoginScreen() {
           autoCapitalize="none"
         />
         <TextInput
-          style={[styles.input, { backgroundColor: theme.surface, color: theme.text, borderColor: theme.border }]}
+          style={[styles.input, { borderColor: theme.border, color: theme.text, backgroundColor: theme.surface }]}
           placeholder="パスワード"
           placeholderTextColor={theme.textSecondary}
           value={password}
           onChangeText={setPassword}
           secureTextEntry
         />
-
         <TouchableOpacity
-          style={[styles.btn, { backgroundColor: theme.primary }, loading && styles.btnDisabled]}
+          style={[styles.button, { backgroundColor: theme.primary }]}
           onPress={handleLogin}
           disabled={loading}
         >
-          <Text style={styles.btnText}>{loading ? '...' : 'ログイン'}</Text>
+          {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>ログイン</Text>}
         </TouchableOpacity>
-
         <TouchableOpacity onPress={() => router.push('/(auth)/signup')}>
           <Text style={[styles.link, { color: theme.primary }]}>アカウントを作成する</Text>
         </TouchableOpacity>
       </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  inner: { flex: 1, justifyContent: 'center', padding: 28 },
-  logo: { fontSize: 38, fontWeight: '900', textAlign: 'center', marginBottom: 8 },
-  subtitle: { fontSize: 14, textAlign: 'center', marginBottom: 36 },
-  input: {
-    height: 50,
-    borderRadius: 12,
-    borderWidth: 1,
-    paddingHorizontal: 16,
-    fontSize: 16,
-    marginBottom: 14,
-  },
-  btn: {
-    height: 52,
-    borderRadius: 14,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 6,
-    marginBottom: 16,
-  },
-  btnDisabled: { opacity: 0.6 },
-  btnText: { color: '#fff', fontSize: 17, fontWeight: '700' },
-  link: { textAlign: 'center', fontSize: 14, fontWeight: '600' },
+  scroll: { flexGrow: 1, justifyContent: 'center' },
+  inner: { padding: 32 },
+  logo: { fontSize: 42, fontWeight: '900', textAlign: 'center', marginBottom: 8 },
+  subtitle: { fontSize: 14, textAlign: 'center', marginBottom: 32 },
+  error: { fontSize: 13, textAlign: 'center', marginBottom: 12 },
+  input: { borderWidth: 1, borderRadius: 12, padding: 14, fontSize: 16, marginBottom: 14 },
+  button: { borderRadius: 12, padding: 16, alignItems: 'center', marginTop: 8, marginBottom: 16 },
+  buttonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+  link: { textAlign: 'center', fontSize: 14, marginTop: 4 },
 });
