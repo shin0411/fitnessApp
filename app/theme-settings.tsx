@@ -1,1 +1,77 @@
-aW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JzsKaW1wb3J0IHsgVmlldywgVGV4dCwgVG91Y2hhYmxlT3BhY2l0eSwgU3R5bGVTaGVldCwgU2Nyb2xsVmlldyB9IGZyb20gJ3JlYWN0LW5hdGl2ZSc7CmltcG9ydCB7IHJvdXRlciB9IGZyb20gJ2V4cG8tcm91dGVyJzsKaW1wb3J0IHsgdXNlVGhlbWUgfSBmcm9tICcuLi9ob29rcy91c2VUaGVtZSc7CmltcG9ydCB7IHVzZVRoZW1lU3RvcmUgfSBmcm9tICcuLi9zdG9yZS90aGVtZVN0b3JlJzsKaW1wb3J0IHsgVGhlbWVOYW1lIH0gZnJvbSAnLi4vdHlwZXMnOwppbXBvcnQgeyBrYXdhaWkgfSBmcm9tICcuLi90aGVtZS90aGVtZXMva2F3YWlpJzsKaW1wb3J0IHsgY29vbCB9IGZyb20gJy4uL3RoZW1lL3RoZW1lcy9jb29sJzsKaW1wb3J0IHsgYmVhdXRpZnVsIH0gZnJvbSAnLi4vdGhlbWUvdGhlbWVzL2JlYXV0aWZ1bCc7CmltcG9ydCB7IHNpbXBsZSB9IGZyb20gJy4uL3RoZW1lL3RoZW1lcy9zaW1wbGUnOwoKY29uc3QgVEhFTUVTOiB7IG5hbWU6IFRoZW1lTmFtZTsgbGFiZWw6IHN0cmluZzsgZGVzY3JpcHRpb246IHN0cmluZzsgY29sb3JzOiB0eXBlb2Ygc2ltcGxlIH1bXSA9IFsKICB7IG5hbWU6ICdzaW1wbGUnLCBsYWJlbDogJ1NpbXBsZScsIGRlc2NyaXB0aW9uOiAn44Of44OL44Oe44Or44O744Ob44Ov44Kk44OI5Z+66Kq/JywgY29sb3JzOiBzaW1wbGUgfSwKICB7IG5hbWU6ICdrYXdhaWknLCBsYWJlbDogJ0thd2FpaScsIGRlc2NyaXB0aW9uOiAn44OU44Oz44Kv44O744OR44K544OG44Or44O744G144KT44KP44KKJywgY29sb3JzOiBrYXdhaWkgfSwKICB7IG5hbWU6ICdjb29sJywgbGFiZWw6ICdDb29sJywgZGVzY3JpcHRpb246ICfjg4Djg7zjgq/jg7vjg43jgqrjg7Pjg7vjgrfjg6Pjg7zjg5cnLCBjb2xvcnM6IGNvb2wgfSwKICB7IG5hbWU6ICdiZWF1dGlmdWwnLCBsYWJlbDogJ0JlYXV0aWZ1bCcsIGRlc2NyaXB0aW9uOiAn44K044O844Or44OJ44O744Ko44Os44Ks44Oz44OIJywgY29sb3JzOiBiZWF1dGlmdWwgfSwKXTsKCmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFRoZW1lU2V0dGluZ3NTY3JlZW4oKSB7CiAgY29uc3QgdGhlbWUgPSB1c2VUaGVtZSgpOwogIGNvbnN0IHsgdGhlbWVOYW1lLCBzZXRUaGVtZSB9ID0gdXNlVGhlbWVTdG9yZSgpOwoKICByZXR1cm4gKAogICAgPFZpZXcgc3R5bGU9e1tzdHlsZXMuY29udGFpbmVyLCB7IGJhY2tncm91bmRDb2xvcjogdGhlbWUuYmFja2dyb3VuZCB9XX0+CiAgICAgIDxWaWV3IHN0eWxlPXtzdHlsZXMuaGVhZGVyfT4KICAgICAgICA8VG91Y2hhYmxlT3BhY2l0eSBvblByZXNzPXsoKSA9PiByb3V0ZXIuYmFjaygpfT4KICAgICAgICAgIDxUZXh0IHN0eWxlPXtbc3R5bGVzLmJhY2ssIHsgY29sb3I6IHRoZW1lLnByaW1hcnkgfV19PuKGkCDmiLvjgos8L1RleHQ+CiAgICAgICAgPC9Ub3VjaGFibGVPcGFjaXR5PgogICAgICAgIDxUZXh0IHN0eWxlPXtbc3R5bGVzLnRpdGxlLCB7IGNvbG9yOiB0aGVtZS50ZXh0IH1dfT7jg4bjg7zjg57oqK3lrpo8L1RleHQ+CiAgICAgIDwvVmlldz4KICAgICAgPFNjcm9sbFZpZXcgY29udGVudENvbnRhaW5lclN0eWxlPXtzdHlsZXMubGlzdH0+CiAgICAgICAge1RIRU1FUy5tYXAoKHQpID0+IHsKICAgICAgICAgIGNvbnN0IGlzU2VsZWN0ZWQgPSB0aGVtZU5hbWUgPT09IHQubmFtZTsKICAgICAgICAgIHJldHVybiAoCiAgICAgICAgICAgIDxUb3VjaGFibGVPcGFjaXR5CiAgICAgICAgICAgICAga2V5PXt0Lm5hbWV9CiAgICAgICAgICAgICAgc3R5bGU9e1sKICAgICAgICAgICAgICAgIHN0eWxlcy5jYXJkLAogICAgICAgICAgICAgICAgeyBiYWNrZ3JvdW5kQ29sb3I6IHQuY29sb3JzLnN1cmZhY2UsIGJvcmRlckNvbG9yOiBpc1NlbGVjdGVkID8gdC5jb2xvcnMucHJpbWFyeSA6IHQuY29sb3JzLmJvcmRlciwgYm9yZGVyV2lkdGg6IGlzU2VsZWN0ZWQgPyAyIDogMSB9LAogICAgICAgICAgICAgIF19CiAgICAgICAgICAgICAgb25QcmVzcz17KCkgPT4gc2V0VGhlbWUodC5uYW1lKX0KICAgICAgICAgICAgPgogICAgICAgICAgICAgIDxWaWV3IHN0eWxlPXtzdHlsZXMuY2FyZEhlYWRlcn0+CiAgICAgICAgICAgICAgICA8VGV4dCBzdHlsZT17W3N0eWxlcy5jYXJkVGl0bGUsIHsgY29sb3I6IHQuY29sb3JzLnRleHQgfV19Pnt0LmxhYmVsfTwvVGV4dD4KICAgICAgICAgICAgICAgIHtpc1NlbGVjdGVkICYmICgKICAgICAgICAgICAgICAgICAgPFRleHQgc3R5bGU9e1tzdHlsZXMuY2hlY2ttYXJrLCB7IGNvbG9yOiB0LmNvbG9ycy5wcmltYXJ5IH1dfT7inJMg6YG45oqe5LitPC9UZXh0PgogICAgICAgICAgICAgICAgKX0KICAgICAgICAgICAgICA8L1ZpZXc+CiAgICAgICAgICAgICAgPFRleHQgc3R5bGU9e1tzdHlsZXMuY2FyZERlc2MsIHsgY29sb3I6IHQuY29sb3JzLnRleHRTZWNvbmRhcnkgfV19Pnt0LmRlc2NyaXB0aW9ufTwvVGV4dD4KICAgICAgICAgICAgICA8VmlldyBzdHlsZT17c3R5bGVzLnN3YXRjaFJvd30+CiAgICAgICAgICAgICAgICA8VmlldyBzdHlsZT17W3N0eWxlcy5zd2F0Y2gsIHsgYmFja2dyb3VuZENvbG9yOiB0LmNvbG9ycy5wcmltYXJ5IH1dfSAvPgogICAgICAgICAgICAgICAgPFZpZXcgc3R5bGU9e1tzdHlsZXMuc3dhdGNoLCB7IGJhY2tncm91bmRDb2xvcjogdC5jb2xvcnMuc2Vjb25kYXJ5IH1dfSAvPgogICAgICAgICAgICAgICAgPFZpZXcgc3R5bGU9e1tzdHlsZXMuc3dhdGNoLCB7IGJhY2tncm91bmRDb2xvcjogdC5jb2xvcnMuYmFja2dyb3VuZCwgYm9yZGVyV2lkdGg6IDEsIGJvcmRlckNvbG9yOiB0LmNvbG9ycy5ib3JkZXIgfV19IC8+CiAgICAgICAgICAgICAgICA8VmlldyBzdHlsZT17W3N0eWxlcy5zd2F0Y2gsIHsgYmFja2dyb3VuZENvbG9yOiB0LmNvbG9ycy54cENvbG9yIH1dfSAvPgogICAgICAgICAgICAgIDwvVmlldz4KICAgICAgICAgICAgPC9Ub3VjaGFibGVPcGFjaXR5PgogICAgICAgICAgKTsKICAgICAgICB9KX0KICAgICAgPC9TY3JvbGxWaWV3PgogICAgPC9WaWV3PgogICk7Cn0KCmNvbnN0IHN0eWxlcyA9IFN0eWxlU2hlZXQuY3JlYXRlKHsKICBjb250YWluZXI6IHsgZmxleDogMSB9LAogIGhlYWRlcjogeyBwYWRkaW5nVG9wOiA2MCwgcGFkZGluZ0hvcml6b250YWw6IDIwLCBwYWRkaW5nQm90dG9tOiAxNiB9LAogIGJhY2s6IHsgZm9udFNpemU6IDE2LCBmb250V2VpZ2h0OiAnNjAwJywgbWFyZ2luQm90dG9tOiAxMiB9LAogIHRpdGxlOiB7IGZvbnRTaXplOiAyOCwgZm9udFdlaWdodDogJzgwMCcgfSwKICBsaXN0OiB7IHBhZGRpbmc6IDIwLCBwYWRkaW5nVG9wOiA4LCBnYXA6IDEyIH0sCiAgY2FyZDogeyBib3JkZXJSYWRpdXM6IDE2LCBwYWRkaW5nOiAxOCB9LAogIGNhcmRIZWFkZXI6IHsgZmxleERpcmVjdGlvbjogJ3JvdycsIGp1c3RpZnlDb250ZW50OiAnc3BhY2UtYmV0d2VlbicsIGFsaWduSXRlbXM6ICdjZW50ZXInLCBtYXJnaW5Cb3R0b206IDYgfSwKICBjYXJkVGl0bGU6IHsgZm9udFNpemU6IDIwLCBmb250V2VpZ2h0OiAnNzAwJyB9LAogIGNoZWNrbWFyazogeyBmb250U2l6ZTogMTMsIGZvbnRXZWlnaHQ6ICc3MDAnIH0sCiAgY2FyZERlc2M6IHsgZm9udFNpemU6IDEzLCBtYXJnaW5Cb3R0b206IDEyIH0sCiAgc3dhdGNoUm93OiB7IGZsZXhEaXJlY3Rpb246ICdyb3cnLCBnYXA6IDggfSwKICBzd2F0Y2g6IHsgd2lkdGg6IDI4LCBoZWlnaHQ6IDI4LCBib3JkZXJSYWRpdXM6IDggfSwKfSk7Cg==
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { router } from 'expo-router';
+import { useTheme } from '../hooks/useTheme';
+import { useThemeStore } from '../store/themeStore';
+import { ThemeName } from '../types';
+import { kawaii } from '../theme/themes/kawaii';
+import { cool } from '../theme/themes/cool';
+import { beautiful } from '../theme/themes/beautiful';
+import { simple } from '../theme/themes/simple';
+
+const THEMES: { name: ThemeName; label: string; description: string; colors: typeof simple }[] = [
+  { name: 'simple', label: 'Simple', description: 'ミニマル・ホワイト基調', colors: simple },
+  { name: 'kawaii', label: 'Kawaii', description: 'ピンク・パステル・ふんわり', colors: kawaii },
+  { name: 'cool', label: 'Cool', description: 'ダーク・ネオン・シャープ', colors: cool },
+  { name: 'beautiful', label: 'Beautiful', description: 'ゴールド・エレガント', colors: beautiful },
+];
+
+export default function ThemeSettingsScreen() {
+  const theme = useTheme();
+  const { themeName, setTheme } = useThemeStore();
+
+  return (
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()}>
+          <Text style={[styles.back, { color: theme.primary }]}>← 戻る</Text>
+        </TouchableOpacity>
+        <Text style={[styles.title, { color: theme.text }]}>テーマ設定</Text>
+      </View>
+      <ScrollView contentContainerStyle={styles.list}>
+        {THEMES.map((t) => {
+          const isSelected = themeName === t.name;
+          return (
+            <TouchableOpacity
+              key={t.name}
+              style={[
+                styles.card,
+                { backgroundColor: t.colors.surface, borderColor: isSelected ? t.colors.primary : t.colors.border, borderWidth: isSelected ? 2 : 1 },
+              ]}
+              onPress={() => setTheme(t.name)}
+            >
+              <View style={styles.cardHeader}>
+                <Text style={[styles.cardTitle, { color: t.colors.text }]}>{t.label}</Text>
+                {isSelected && (
+                  <Text style={[styles.checkmark, { color: t.colors.primary }]}>✓ 選択中</Text>
+                )}
+              </View>
+              <Text style={[styles.cardDesc, { color: t.colors.textSecondary }]}>{t.description}</Text>
+              <View style={styles.swatchRow}>
+                <View style={[styles.swatch, { backgroundColor: t.colors.primary }]} />
+                <View style={[styles.swatch, { backgroundColor: t.colors.secondary }]} />
+                <View style={[styles.swatch, { backgroundColor: t.colors.background, borderWidth: 1, borderColor: t.colors.border }]} />
+                <View style={[styles.swatch, { backgroundColor: t.colors.xpColor }]} />
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+  header: { paddingTop: 60, paddingHorizontal: 20, paddingBottom: 16 },
+  back: { fontSize: 16, fontWeight: '600', marginBottom: 12 },
+  title: { fontSize: 28, fontWeight: '800' },
+  list: { padding: 20, paddingTop: 8, gap: 12 },
+  card: { borderRadius: 16, padding: 18 },
+  cardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 },
+  cardTitle: { fontSize: 20, fontWeight: '700' },
+  checkmark: { fontSize: 13, fontWeight: '700' },
+  cardDesc: { fontSize: 13, marginBottom: 12 },
+  swatchRow: { flexDirection: 'row', gap: 8 },
+  swatch: { width: 28, height: 28, borderRadius: 8 },
+});

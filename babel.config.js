@@ -1,1 +1,7 @@
-bW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbiAoYXBpKSB7CiAgYXBpLmNhY2hlKHRydWUpOwogIHJldHVybiB7CiAgICBwcmVzZXRzOiBbJ2JhYmVsLXByZXNldC1leHBvJ10sCiAgICBwbHVnaW5zOiBbJ3JlYWN0LW5hdGl2ZS1yZWFuaW1hdGVkL3BsdWdpbiddLAogIH07Cn07Cg==
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: ['react-native-reanimated/plugin'],
+  };
+};

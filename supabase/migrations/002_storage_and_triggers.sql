@@ -1,1 +1,105 @@
-LS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQotLSBTdG9yYWdlIEJ1Y2tldHMKLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoKaW5zZXJ0IGludG8gc3RvcmFnZS5idWNrZXRzIChpZCwgbmFtZSwgcHVibGljLCBmaWxlX3NpemVfbGltaXQsIGFsbG93ZWRfbWltZV90eXBlcykgdmFsdWVzCiAgKCdwaG90by1hbmFseXNlcycsICdwaG90by1hbmFseXNlcycsIGZhbHNlLCAxMDQ4NTc2MCwgYXJyYXlbJ2ltYWdlL2pwZWcnLCAnaW1hZ2UvcG5nJywgJ2ltYWdlL3dlYnAnXSksCiAgKCdtZWFsLXBob3RvcycsICdtZWFsLXBob3RvcycsIGZhbHNlLCAxMDQ4NTc2MCwgYXJyYXlbJ2ltYWdlL2pwZWcnLCAnaW1hZ2UvcG5nJywgJ2ltYWdlL3dlYnAnXSksCiAgKCdzaGFyZS1jYXJkcycsICdzaGFyZS1jYXJkcycsIHRydWUsIDUyNDI4ODAsIGFycmF5WydpbWFnZS9qcGVnJywgJ2ltYWdlL3BuZyddKQpvbiBjb25mbGljdCAoaWQpIGRvIG5vdGhpbmc7CgotLSBTdG9yYWdlIFJMUzogVXNlcnMgY2FuIG9ubHkgYWNjZXNzIHRoZWlyIG93biBmaWxlcyAocGF0aCBwcmVmaXggPSB1c2VyX2lkKQpjcmVhdGUgcG9saWN5ICJ1c2Vyc191cGxvYWRfb3duX3Bob3RvcyIgb24gc3RvcmFnZS5vYmplY3RzIGZvciBpbnNlcnQKICB3aXRoIGNoZWNrICgKICAgIGJ1Y2tldF9pZCBpbiAoJ3Bob3RvLWFuYWx5c2VzJywgJ21lYWwtcGhvdG9zJykKICAgIGFuZCBhdXRoLnVpZCgpOjp0ZXh0ID0gKHN0b3JhZ2UuZm9sZGVybmFtZShuYW1lKSlbMV0KICApOwoKY3JlYXRlIHBvbGljeSAidXNlcnNfcmVhZF9vd25fcGhvdG9zIiBvbiBzdG9yYWdlLm9iamVjdHMgZm9yIHNlbGVjdAogIHVzaW5nICgKICAgIGJ1Y2tldF9pZCBpbiAoJ3Bob3RvLWFuYWx5c2VzJywgJ21lYWwtcGhvdG9zJykKICAgIGFuZCBhdXRoLnVpZCgpOjp0ZXh0ID0gKHN0b3JhZ2UuZm9sZGVybmFtZShuYW1lKSlbMV0KICApOwoKY3JlYXRlIHBvbGljeSAidXNlcnNfZGVsZXRlX293bl9waG90b3MiIG9uIHN0b3JhZ2Uub2JqZWN0cyBmb3IgZGVsZXRlCiAgdXNpbmcgKAogICAgYnVja2V0X2lkIGluICgncGhvdG8tYW5hbHlzZXMnLCAnbWVhbC1waG90b3MnKQogICAgYW5kIGF1dGgudWlkKCk6OnRleHQgPSAoc3RvcmFnZS5mb2xkZXJuYW1lKG5hbWUpKVsxXQogICk7CgpjcmVhdGUgcG9saWN5ICJzaGFyZV9jYXJkc19wdWJsaWNfcmVhZCIgb24gc3RvcmFnZS5vYmplY3RzIGZvciBzZWxlY3QKICB1c2luZyAoYnVja2V0X2lkID0gJ3NoYXJlLWNhcmRzJyk7CgpjcmVhdGUgcG9saWN5ICJ1c2Vyc191cGxvYWRfb3duX3NoYXJlX2NhcmRzIiBvbiBzdG9yYWdlLm9iamVjdHMgZm9yIGluc2VydAogIHdpdGggY2hlY2sgKAogICAgYnVja2V0X2lkID0gJ3NoYXJlLWNhcmRzJwogICAgYW5kIGF1dGgudWlkKCk6OnRleHQgPSAoc3RvcmFnZS5mb2xkZXJuYW1lKG5hbWUpKVsxXQogICk7CgotLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Ci0tIFRyaWdnZXJzOiBBdXRvLWNyZWF0ZSBwcm9maWxlICYgNC1heGlzIGxldmVscyBvbiBzaWdudXAKLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoKY3JlYXRlIG9yIHJlcGxhY2UgZnVuY3Rpb24gaGFuZGxlX25ld191c2VyKCkKcmV0dXJucyB0cmlnZ2VyCmxhbmd1YWdlIHBscGdzcWwKc2VjdXJpdHkgZGVmaW5lcgpzZXQgc2VhcmNoX3BhdGggPSBwdWJsaWMKYXMgJCQKZGVjbGFyZQogIGdlbmVyYXRlZF9jb2RlIHRleHQ7CmJlZ2luCiAgZ2VuZXJhdGVkX2NvZGUgOj0gdXBwZXIoc3Vic3RyaW5nKG1kNShyYW5kb20oKTo6dGV4dCkgZnJvbSAxIGZvciA4KSk7CgogIGluc2VydCBpbnRvIHB1YmxpYy5wcm9maWxlcyAoaWQsIHVzZXJuYW1lLCBpbnZpdGVfY29kZSwgdGhlbWUsIG9uYm9hcmRpbmdfY29tcGxldGVkKQogIHZhbHVlcyAoCiAgICBuZXcuaWQsCiAgICBjb2FsZXNjZShuZXcucmF3X3VzZXJfbWV0YV9kYXRhLT4+J3VzZXJuYW1lJywgJ3VzZXJfJyB8fCBzdWJzdHJpbmcobmV3LmlkOjp0ZXh0IGZyb20gMSBmb3IgOCkpLAogICAgZ2VuZXJhdGVkX2NvZGUsCiAgICAnc2ltcGxlJywKICAgIGZhbHNlCiAgKQogIG9uIGNvbmZsaWN0IChpZCkgZG8gbm90aGluZzsKCiAgaW5zZXJ0IGludG8gcHVibGljLnVzZXJfbGV2ZWxzICh1c2VyX2lkLCBsZXZlbF90eXBlLCBsZXZlbCwgdG90YWxfeHAsIGN1cnJlbnRfdGl0bGUpIHZhbHVlcwogICAgKG5ldy5pZCwgJ3BoeXNpY2FsJywgMSwgMCwgJ+imi+e/kuOBhOODiOODrOODvOODi+ODvCcpLAogICAgKG5ldy5pZCwgJ2JlYXV0eScsIDEsIDAsICfnvo7lrrnliJ3lv4PogIUnKSwKICAgIChuZXcuaWQsICdrbm93bGVkZ2UnLCAxLCAwLCAn55+l6K2Y44Gu6Iq955Sf44GIJyksCiAgICAobmV3LmlkLCAnY29tcHJlaGVuc2l2ZScsIDEsIDAsICfmiJDplbfjga7lp4vjgb7jgoonKQogIG9uIGNvbmZsaWN0ICh1c2VyX2lkLCBsZXZlbF90eXBlKSBkbyBub3RoaW5nOwoKICByZXR1cm4gbmV3OwplbmQ7CiQkOwoKZHJvcCB0cmlnZ2VyIGlmIGV4aXN0cyBvbl9hdXRoX3VzZXJfY3JlYXRlZCBvbiBhdXRoLnVzZXJzOwpjcmVhdGUgdHJpZ2dlciBvbl9hdXRoX3VzZXJfY3JlYXRlZAogIGFmdGVyIGluc2VydCBvbiBhdXRoLnVzZXJzCiAgZm9yIGVhY2ggcm93IGV4ZWN1dGUgZnVuY3Rpb24gaGFuZGxlX25ld191c2VyKCk7CgotLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Ci0tIEhlbHBlcjogQ29tcHV0ZSBjb21wcmVoZW5zaXZlIFhQIGZyb20gb3RoZXIgMyBheGVzCi0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCmNyZWF0ZSBvciByZXBsYWNlIGZ1bmN0aW9uIHJlY29tcHV0ZV9jb21wcmVoZW5zaXZlX3hwKHRhcmdldF91c2VyX2lkIHV1aWQpCnJldHVybnMgdm9pZApsYW5ndWFnZSBwbHBnc3FsCnNlY3VyaXR5IGRlZmluZXIKc2V0IHNlYXJjaF9wYXRoID0gcHVibGljCmFzICQkCmRlY2xhcmUKICBwaHlzaWNhbF94cCBiaWdpbnQ7CiAgYmVhdXR5X3hwIGJpZ2ludDsKICBrbm93bGVkZ2VfeHAgYmlnaW50OwogIGNvbXBfeHAgYmlnaW50OwpiZWdpbgogIHNlbGVjdCBjb2FsZXNjZSh0b3RhbF94cCwgMCkgaW50byBwaHlzaWNhbF94cCBmcm9tIHVzZXJfbGV2ZWxzIHdoZXJlIHVzZXJfaWQgPSB0YXJnZXRfdXNlcl9pZCBhbmQgbGV2ZWxfdHlwZSA9ICdwaHlzaWNhbCc7CiAgc2VsZWN0IGNvYWxlc2NlKHRvdGFsX3hwLCAwKSBpbnRvIGJlYXV0eV94cCBmcm9tIHVzZXJfbGV2ZWxzIHdoZXJlIHVzZXJfaWQgPSB0YXJnZXRfdXNlcl9pZCBhbmQgbGV2ZWxfdHlwZSA9ICdiZWF1dHknOwogIHNlbGVjdCBjb2FsZXNjZSh0b3RhbF94cCwgMCkgaW50byBrbm93bGVkZ2VfeHAgZnJvbSB1c2VyX2xldmVscyB3aGVyZSB1c2VyX2lkID0gdGFyZ2V0X3VzZXJfaWQgYW5kIGxldmVsX3R5cGUgPSAna25vd2xlZGdlJzsKCiAgY29tcF94cCA6PSAocGh5c2ljYWxfeHAgKiAwLjQgKyBiZWF1dHlfeHAgKiAwLjMgKyBrbm93bGVkZ2VfeHAgKiAwLjMpOjpiaWdpbnQ7CgogIHVwZGF0ZSB1c2VyX2xldmVscyBzZXQgdG90YWxfeHAgPSBjb21wX3hwLCB1cGRhdGVkX2F0ID0gbm93KCkKICAgIHdoZXJlIHVzZXJfaWQgPSB0YXJnZXRfdXNlcl9pZCBhbmQgbGV2ZWxfdHlwZSA9ICdjb21wcmVoZW5zaXZlJzsKZW5kOwokJDsK
+-- ============================================================================
+-- Storage Buckets
+-- ============================================================================
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types) values
+  ('photo-analyses', 'photo-analyses', false, 10485760, array['image/jpeg', 'image/png', 'image/webp']),
+  ('meal-photos', 'meal-photos', false, 10485760, array['image/jpeg', 'image/png', 'image/webp']),
+  ('share-cards', 'share-cards', true, 5242880, array['image/jpeg', 'image/png'])
+on conflict (id) do nothing;
+
+-- Storage RLS: Users can only access their own files (path prefix = user_id)
+create policy "users_upload_own_photos" on storage.objects for insert
+  with check (
+    bucket_id in ('photo-analyses', 'meal-photos')
+    and auth.uid()::text = (storage.foldername(name))[1]
+  );
+
+create policy "users_read_own_photos" on storage.objects for select
+  using (
+    bucket_id in ('photo-analyses', 'meal-photos')
+    and auth.uid()::text = (storage.foldername(name))[1]
+  );
+
+create policy "users_delete_own_photos" on storage.objects for delete
+  using (
+    bucket_id in ('photo-analyses', 'meal-photos')
+    and auth.uid()::text = (storage.foldername(name))[1]
+  );
+
+create policy "share_cards_public_read" on storage.objects for select
+  using (bucket_id = 'share-cards');
+
+create policy "users_upload_own_share_cards" on storage.objects for insert
+  with check (
+    bucket_id = 'share-cards'
+    and auth.uid()::text = (storage.foldername(name))[1]
+  );
+
+-- ============================================================================
+-- Triggers: Auto-create profile & 4-axis levels on signup
+-- ============================================================================
+
+create or replace function handle_new_user()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  generated_code text;
+begin
+  generated_code := upper(substring(md5(random()::text) from 1 for 8));
+
+  insert into public.profiles (id, username, invite_code, theme, onboarding_completed)
+  values (
+    new.id,
+    coalesce(new.raw_user_meta_data->>'username', 'user_' || substring(new.id::text from 1 for 8)),
+    generated_code,
+    'simple',
+    false
+  )
+  on conflict (id) do nothing;
+
+  insert into public.user_levels (user_id, level_type, level, total_xp, current_title) values
+    (new.id, 'physical', 1, 0, '見習いトレーニー'),
+    (new.id, 'beauty', 1, 0, '美容初心者'),
+    (new.id, 'knowledge', 1, 0, '知識の芽生え'),
+    (new.id, 'comprehensive', 1, 0, '成長の始まり')
+  on conflict (user_id, level_type) do nothing;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute function handle_new_user();
+
+-- ============================================================================
+-- Helper: Compute comprehensive XP from other 3 axes
+-- ============================================================================
+
+create or replace function recompute_comprehensive_xp(target_user_id uuid)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  physical_xp bigint;
+  beauty_xp bigint;
+  knowledge_xp bigint;
+  comp_xp bigint;
+begin
+  select coalesce(total_xp, 0) into physical_xp from user_levels where user_id = target_user_id and level_type = 'physical';
+  select coalesce(total_xp, 0) into beauty_xp from user_levels where user_id = target_user_id and level_type = 'beauty';
+  select coalesce(total_xp, 0) into knowledge_xp from user_levels where user_id = target_user_id and level_type = 'knowledge';
+
+  comp_xp := (physical_xp * 0.4 + beauty_xp * 0.3 + knowledge_xp * 0.3)::bigint;
+
+  update user_levels set total_xp = comp_xp, updated_at = now()
+    where user_id = target_user_id and level_type = 'comprehensive';
+end;
+$$;
