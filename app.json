@@ -92,9 +92,6 @@
           "color": "#00FFCC"
         }
       ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    ]
   }
 }
