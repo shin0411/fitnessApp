@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/Button';
 import { PhotoAnalysis } from '@/types';
 
 const ANALYSIS_TYPES = [
-  { value: 'face', label: '賈診断', emoji: '👤', description: '顔の輪郭や特徴を分析します' },
-  { value: 'body', label: '体型診断', emoji: '💪', description: '体利や筋肉を分析します' },
+  { value: 'face', label: '顔診断', emoji: '👤', description: '顔の輪郭や特徴を分析します' },
+  { value: 'body', label: '体型診断', emoji: '💪', description: '体型や筋肉を分析します' },
   { value: 'flexibility', label: '柔軟性診断', emoji: '🧘', description: '柔軟性やストレッチを診断します' },
 ];
 
