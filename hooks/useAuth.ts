@@ -42,5 +42,13 @@ export function useAuth() {
     if (streaksRes.data) setStreaks(streaksRes.data as Streak[]);
   }
 
-  return { session, loading };
+  async function signIn(email: string, password: string) {
+    return supabase.auth.signInWithPassword({ email, password });
+  }
+
+  async function signOut() {
+    return supabase.auth.signOut();
+  }
+
+  return { session, loading, signIn, signOut };
 }
