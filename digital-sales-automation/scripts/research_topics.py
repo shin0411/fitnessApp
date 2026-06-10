@@ -2,19 +2,6 @@
 トレンドトピック調査スクリプト
 Claude APIでebookになりそうなテーマを提案する
 """
-import io
-import os
-import sys
-
-# Python起動後でも可能な限りUTF-8を強制する
-os.environ["PYTHONUTF8"] = "1"
-os.environ["PYTHONIOENCODING"] = "utf-8"
-try:
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
-except AttributeError:
-    pass
-
 import json
 import traceback
 import anthropic

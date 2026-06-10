@@ -3,18 +3,6 @@
 土曜日に実行: トピック選択 → コンテンツ生成 → PDF作成 → Gumroadアップロード
 日曜日に実行: 売上レポート確認
 """
-import io
-import os
-import sys
-
-os.environ["PYTHONUTF8"] = "1"
-os.environ["PYTHONIOENCODING"] = "utf-8"
-try:
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
-except AttributeError:
-    pass
-
 import json
 from pathlib import Path
 from datetime import datetime
