@@ -22,7 +22,7 @@ from rich.console import Console
 from rich.prompt import Prompt, Confirm
 from rich.panel import Panel
 
-console = Console(encoding="utf-8")
+console = Console()  # stdout は既にUTF-8 TextIOWrapperに差し替え済み
 
 
 def saturday_workflow(genre: str | None = None) -> None:

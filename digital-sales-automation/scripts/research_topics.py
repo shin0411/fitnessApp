@@ -25,7 +25,7 @@ from rich.table import Table
 
 load_dotenv()
 # force_terminal を外し、encoding を明示
-console = Console(encoding="utf-8", stderr=False)
+console = Console()  # stdout は既にUTF-8 TextIOWrapperに差し替え済み
 
 
 GENRE_KEYWORDS = {
