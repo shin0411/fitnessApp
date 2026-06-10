@@ -3,13 +3,17 @@
 土曜日に実行: トピック選択 → コンテンツ生成 → PDF作成 → Gumroadアップロード
 日曜日に実行: 売上レポート確認
 """
+import io
 import os
 import sys
 
 os.environ["PYTHONUTF8"] = "1"
 os.environ["PYTHONIOENCODING"] = "utf-8"
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
+try:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+except AttributeError:
+    pass
 
 import json
 from pathlib import Path
@@ -18,7 +22,7 @@ from rich.console import Console
 from rich.prompt import Prompt, Confirm
 from rich.panel import Panel
 
-console = Console()
+console = Console(encoding="utf-8")
 
 
 def saturday_workflow(genre: str | None = None) -> None:
@@ -30,7 +34,10 @@ def saturday_workflow(genre: str | None = None) -> None:
 
     # Step 1: トピック調査
     console.print("\n[bold cyan]Step 1/4: トレンドトピックを調査します[/bold cyan]")
-    from scripts.research_topics import research, display_topics
+    from scripts.research_topics import check_api_key, research, display_topics
+    if not check_api_key():
+        console.print("[red]APIキーを .env に設定してから再実行してください[/red]")
+        return
     topics = research(genre)
 
     if not topics:
