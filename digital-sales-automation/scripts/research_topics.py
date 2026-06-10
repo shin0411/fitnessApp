@@ -3,6 +3,8 @@
 Claude APIでebookになりそうなテーマを提案する
 """
 import json
+import os
+import sys
 import traceback
 import anthropic
 from datetime import datetime

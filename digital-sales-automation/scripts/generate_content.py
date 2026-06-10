@@ -2,15 +2,9 @@
 eBookコンテンツ自動生成スクリプト
 タイトルを入力するとAIが本文を生成し、Markdownファイルとして保存する
 """
+import json
 import os
 import sys
-
-os.environ["PYTHONUTF8"] = "1"
-os.environ["PYTHONIOENCODING"] = "utf-8"
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
-
-import json
 import anthropic
 from datetime import datetime
 from pathlib import Path
