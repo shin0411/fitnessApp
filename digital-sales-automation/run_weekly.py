@@ -57,24 +57,11 @@ def saturday_workflow(genre: str | None = None) -> None:
         console.print("[yellow]reportlabが未インストール。先にpip install reportlabを実行してください[/yellow]")
         console.print(f"[yellow]Markdown版: {draft_dir}/content.md[/yellow]")
 
-    # Gumroadへのアップロード確認
-    console.print("\n[bold]Gumroadにアップロードしますか？[/bold]")
-    console.print(f"  タイトル: {selected['title']}")
-    console.print(f"  説明: {sales_copy['tagline']}")
-    price = Prompt.ask("価格（USD）", default="9")
-
-    if Confirm.ask(f"${price}でGumroadに下書き保存しますか？（公開は後で確認してから行います）"):
-        try:
-            from scripts.upload_gumroad import upload
-            url = upload(str(draft_dir), float(price), auto_publish=False)
-            console.print(f"\n[bold green]✅ 完了！Gumroadで確認・公開してください:[/bold green]")
-            console.print(f"[link]{url}[/link]")
-        except Exception as e:
-            console.print(f"[red]Gumroadアップロードエラー: {e}[/red]")
-            console.print(f"[yellow]手動でアップロードしてください: {draft_dir}[/yellow]")
-    else:
-        console.print(f"[yellow]下書きを保存しました: {draft_dir}[/yellow]")
-        console.print("後でアップロードするには: python scripts/upload_gumroad.py '<draft_dir>'")
+    # Gumroad出品準備
+    price = Prompt.ask("\n販売価格（USD）", default="9")
+    if Confirm.ask(f"${price}でGumroad出品の準備をしますか？"):
+        from scripts.upload_gumroad import prepare_for_upload
+        prepare_for_upload(str(draft_dir), float(price))
 
     console.print(Panel(
         "[bold green]土曜日の作業が完了しました！[/bold green]\n"

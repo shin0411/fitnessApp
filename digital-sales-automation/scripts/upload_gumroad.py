@@ -1,81 +1,56 @@
 """
-GumroadへのeBook自動アップロードスクリプト
-Gumroad API v2を使用
+Gumroad出品準備スクリプト
+PDFと販売ページ用テキストを整理し、ブラウザを開いて手動アップロードをガイドする
 """
-import os
-import sys
 import json
-import requests
+import subprocess
+import sys
+import platform
 from pathlib import Path
 from dotenv import load_dotenv
 from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
 
 load_dotenv()
 console = Console()
 
-GUMROAD_API_BASE = "https://api.gumroad.com/v2"
+GUMROAD_NEW_PRODUCT_URL = "https://app.gumroad.com/products/new"
 
 
-def get_headers() -> dict:
-    token = os.getenv("GUMROAD_ACCESS_TOKEN")
-    if not token:
-        raise ValueError("GUMROAD_ACCESS_TOKEN が .env に設定されていません")
-    return {"Authorization": f"Bearer {token}"}
+def open_browser(url: str) -> None:
+    system = platform.system()
+    try:
+        if system == "Darwin":
+            subprocess.run(["open", url], check=True)
+        elif system == "Linux":
+            subprocess.run(["xdg-open", url], check=True)
+        elif system == "Windows":
+            subprocess.run(["start", url], shell=True, check=True)
+    except Exception:
+        pass
 
 
-def create_product(title: str, description: str, price_cents: int) -> dict:
-    """Gumroadに商品を新規作成する"""
-    resp = requests.post(
-        f"{GUMROAD_API_BASE}/products",
-        headers=get_headers(),
-        data={
-            "name": title,
-            "description": description,
-            "price": price_cents,
-            "currency": "usd",
-            "published": "false",  # まず非公開で作成
-        },
-        timeout=30,
-    )
-    resp.raise_for_status()
-    return resp.json()["product"]
+def copy_to_clipboard(text: str) -> bool:
+    system = platform.system()
+    try:
+        if system == "Darwin":
+            subprocess.run(["pbcopy"], input=text.encode(), check=True)
+            return True
+        elif system == "Linux":
+            subprocess.run(["xclip", "-selection", "clipboard"], input=text.encode(), check=True)
+            return True
+    except Exception:
+        pass
+    return False
 
 
-def upload_file(product_id: str, pdf_path: Path) -> dict:
-    """商品にPDFファイルをアップロードする"""
-    with open(pdf_path, "rb") as f:
-        resp = requests.put(
-            f"{GUMROAD_API_BASE}/products/{product_id}/files",
-            headers=get_headers(),
-            files={"file": (pdf_path.name, f, "application/pdf")},
-            timeout=120,
-        )
-    resp.raise_for_status()
-    return resp.json()
-
-
-def publish_product(product_id: str) -> dict:
-    """商品を公開する"""
-    resp = requests.put(
-        f"{GUMROAD_API_BASE}/products/{product_id}",
-        headers=get_headers(),
-        data={"published": "true"},
-        timeout=30,
-    )
-    resp.raise_for_status()
-    return resp.json()["product"]
-
-
-def upload(draft_dir: str, price_usd: float | None = None, auto_publish: bool = False) -> str:
+def prepare_for_upload(draft_dir: str, price_usd: float = 9.0) -> None:
     draft_path = Path(draft_dir)
     meta = json.loads((draft_path / "meta.json").read_text(encoding="utf-8"))
     sales_copy = json.loads((draft_path / "sales_copy.json").read_text(encoding="utf-8"))
 
     title = meta["title"]
-    default_price = float(os.getenv("DEFAULT_PRICE_USD", "9"))
-    price_cents = int((price_usd or default_price) * 100)
-
-    # 説明文を組み立てる
     benefits_text = "\n".join(f"✓ {b}" for b in sales_copy.get("benefits", []))
     description = f"""{sales_copy.get('tagline', '')}
 
@@ -88,51 +63,58 @@ def upload(draft_dir: str, price_usd: float | None = None, auto_publish: bool = 
 {sales_copy.get('target_audience', '')}
 """
 
-    console.print(f"[blue]Gumroadに商品を作成中: {title}[/blue]")
-    product = create_product(title, description, price_cents)
-    product_id = product["id"]
-    console.print(f"[green]商品ID: {product_id}[/green]")
-
-    # PDFを探す
     pdf_files = list(draft_path.glob("*.pdf"))
-    if not pdf_files:
-        raise FileNotFoundError(f"PDFが見つかりません: {draft_path}/*.pdf")
+    pdf_path = pdf_files[0] if pdf_files else None
 
-    pdf_path = pdf_files[0]
-    console.print(f"[blue]PDFをアップロード中: {pdf_path.name}[/blue]")
-    upload_file(product_id, pdf_path)
-    console.print("[green]ファイルアップロード完了[/green]")
+    # 入力内容を表示
+    table = Table(title="Gumroadに入力する内容", show_lines=True)
+    table.add_column("項目", width=18)
+    table.add_column("内容", min_width=40)
 
-    product_url = f"https://app.gumroad.com/products/{product_id}/edit"
+    table.add_row("商品名", title)
+    table.add_row("価格", f"${price_usd:.2f} USD（約¥{int(price_usd * 150):,}）")
+    table.add_row("キャッチコピー", sales_copy.get("tagline", "-"))
+    table.add_row("PDFファイル", str(pdf_path) if pdf_path else "❌ PDFなし（先にcreate_pdf.pyを実行）")
 
-    if auto_publish:
-        product = publish_product(product_id)
-        product_url = product.get("short_url", product_url)
-        console.print(f"[bold green]✅ 公開完了！[/bold green]")
+    console.print(table)
+
+    # 説明文をクリップボードにコピー
+    copied = copy_to_clipboard(description)
+    if copied:
+        console.print("\n[green]✅ 説明文をクリップボードにコピーしました（Cmd+Vで貼り付け可能）[/green]")
     else:
-        console.print(f"[bold yellow]✅ 下書き保存完了。以下のURLで確認・公開してください:[/bold yellow]")
+        console.print("\n[yellow]説明文:[/yellow]")
+        console.print(description)
 
-    console.print(f"[link]{product_url}[/link]")
+    # 手順を表示
+    console.print(Panel(
+        "[bold]Gumroadへのアップロード手順（約3分）[/bold]\n\n"
+        "1. ブラウザが開きます → [bold]+ New product[/bold] をクリック\n"
+        "2. [bold]商品名[/bold] を入力\n"
+        "3. [bold]Price[/bold] に価格を入力\n"
+        "4. [bold]Upload a file[/bold] でPDFを選択\n"
+        f"   📁 {pdf_path or '（PDFを先に生成してください）'}\n"
+        "5. [bold]Description[/bold] 欄に Cmd+V で説明文を貼り付け\n"
+        "6. [bold]Publish[/bold] をクリックして完了\n",
+        style="cyan"
+    ))
 
-    # metaに記録
-    meta["gumroad_product_id"] = product_id
-    meta["gumroad_url"] = product_url
-    meta["status"] = "published" if auto_publish else "pending_review"
+    # ブラウザを開く
+    console.print("[blue]Gumroadを開いています...[/blue]")
+    open_browser(GUMROAD_NEW_PRODUCT_URL)
+
+    # metaを更新
+    meta["status"] = "ready_to_upload"
     (draft_path / "meta.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    return product_url
-
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        console.print("[red]使い方: python upload_gumroad.py <draft_dir> [価格USD] [--publish][/red]")
+        console.print("[red]使い方: python upload_gumroad.py <draft_dir> [価格USD][/red]")
         sys.exit(1)
 
     draft_dir = sys.argv[1]
-    price_usd = float(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[2] != "--publish" else None
-    auto_publish = "--publish" in sys.argv
-
-    url = upload(draft_dir, price_usd, auto_publish)
-    console.print(f"\n商品URL: {url}")
+    price_usd = float(sys.argv[2]) if len(sys.argv) > 2 else 9.0
+    prepare_for_upload(draft_dir, price_usd)
