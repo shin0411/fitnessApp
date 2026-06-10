@@ -4,6 +4,13 @@ Googleトレンドと独自ロジックでebookになりそうなテーマを提
 """
 import os
 import sys
+
+# conda環境での日本語エンコードエラーを防ぐ
+os.environ["PYTHONUTF8"] = "1"
+os.environ["PYTHONIOENCODING"] = "utf-8"
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 import json
 import anthropic
 from datetime import datetime
@@ -12,7 +19,7 @@ from rich.console import Console
 from rich.table import Table
 
 load_dotenv()
-console = Console()
+console = Console(force_terminal=True)
 
 
 GENRE_KEYWORDS = {

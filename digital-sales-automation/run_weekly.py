@@ -3,7 +3,14 @@
 土曜日に実行: トピック選択 → コンテンツ生成 → PDF作成 → Gumroadアップロード
 日曜日に実行: 売上レポート確認
 """
+import os
 import sys
+
+os.environ["PYTHONUTF8"] = "1"
+os.environ["PYTHONIOENCODING"] = "utf-8"
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 import json
 from pathlib import Path
 from datetime import datetime
@@ -25,15 +32,25 @@ def saturday_workflow(genre: str | None = None) -> None:
     console.print("\n[bold cyan]Step 1/4: トレンドトピックを調査します[/bold cyan]")
     from scripts.research_topics import research, display_topics
     topics = research(genre)
+
+    if not topics:
+        console.print("[red]トピックの取得に失敗しました。APIキーを確認して再実行してください。[/red]")
+        return
+
     display_topics(topics)
 
     # Step 2: トピック選択
     console.print("\n[bold cyan]Step 2/4: 作成するトピックを選んでください[/bold cyan]")
-    choice = Prompt.ask(
-        "番号を入力 (1〜" + str(len(topics)) + ")",
-        default="1"
-    )
-    selected = topics[int(choice) - 1]
+    while True:
+        choice = Prompt.ask(f"番号を入力 (1〜{len(topics)})", default="1")
+        try:
+            idx = int(choice.strip())
+            if 1 <= idx <= len(topics):
+                break
+            console.print(f"[red]1〜{len(topics)} の数字を入力してください[/red]")
+        except ValueError:
+            console.print(f"[red]数字を入力してください（例: 1）[/red]")
+    selected = topics[idx - 1]
     console.print(f"\n選択: [bold]{selected['title']}[/bold] ({selected['type']})")
 
     if not Confirm.ask("このトピックで進めますか？"):
