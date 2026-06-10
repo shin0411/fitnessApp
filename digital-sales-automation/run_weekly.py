@@ -4,6 +4,7 @@
 日曜日に実行: 売上レポート確認
 """
 import json
+import sys
 from pathlib import Path
 from datetime import datetime
 from rich.console import Console
