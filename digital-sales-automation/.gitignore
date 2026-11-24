@@ -1,0 +1,5 @@
+.env
+output/
+reports/
+.next_genre
+__pycache__/
