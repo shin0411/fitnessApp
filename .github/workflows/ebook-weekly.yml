@@ -1,0 +1,89 @@
+name: eBook weekly generation
+
+# 毎週土曜 09:00（日本時間）に1冊生成し、成果物として保存する。
+# 出品（Kindle・note）は人が原稿を確認してから手動で行う。
+on:
+  schedule:
+    - cron: "0 0 * * 6"
+  workflow_dispatch:
+    inputs:
+      genre:
+        description: "ジャンル（例: health / 健康・ダイエット。空ならお任せ）"
+        required: false
+        default: ""
+      price:
+        description: "販売価格（円）"
+        required: false
+        default: "500"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ebook-weekly
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: digital-sales-automation
+    env:
+      PYTHONUTF8: "1"
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check API key
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::リポジトリの Settings > Secrets and variables > Actions に ANTHROPIC_API_KEY を登録してください"
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: digital-sales-automation/requirements.txt
+
+      - name: Install Japanese font
+        run: sudo apt-get update -q && sudo apt-get install -y -q fonts-ipaexfont-gothic fonts-ipafont-gothic
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 過去のタイトル一覧を引き継いで同じ本を作らないようにする
+      - name: Restore title history
+        uses: actions/cache/restore@v4
+        with:
+          path: digital-sales-automation/output/history.json
+          key: ebook-history-${{ github.run_id }}
+          restore-keys: ebook-history-
+
+      - name: Generate eBook
+        id: gen
+        env:
+          GENRE: ${{ inputs.genre }}
+          PRICE: ${{ inputs.price || '500' }}
+        run: |
+          ARGS=(--price "$PRICE")
+          if [ -n "$GENRE" ]; then ARGS+=(--genre "$GENRE"); fi
+          python run_weekly.py saturday --auto "${ARGS[@]}"
+
+      - name: Save title history
+        if: steps.gen.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: digital-sales-automation/output/history.json
+          key: ebook-history-${{ github.run_id }}
+
+      - name: Upload eBook files
+        if: steps.gen.outputs.draft_dir != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: ebook-${{ github.run_number }}
+          path: digital-sales-automation/${{ steps.gen.outputs.draft_dir }}
+          retention-days: 30
